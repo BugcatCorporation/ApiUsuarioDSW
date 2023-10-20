@@ -4,7 +4,7 @@ namespace BugCatUsuario.TarjetaRepository
 {
     public interface ITarjetaRepository
     {
-        public Task<IEnumerable<Tarjeta>> BuscarTarjetas();
+        public Task<IEnumerable<Tarjeta>> GetTarjetas();
         public Task<Tarjeta> BuscarTarjetasPorId(int id);
         public Task<Tarjeta> CrearTarjetas(Tarjeta tarjeta);
         public Task<Tarjeta> ActualizarTarjetas(Tarjeta tarjeta);

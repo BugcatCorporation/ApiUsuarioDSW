@@ -1,4 +1,5 @@
 using BugCatUsuario.DbContexts;
+using BugCatUsuario.TarjetaRepository;
 using BugCatUsuario.UsuarioRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<IUsuarioRepository,UsuariosRepository>();
+builder.Services.AddScoped<ITarjetaRepository, TarjetaRepository>();
 
 var app = builder.Build();
 

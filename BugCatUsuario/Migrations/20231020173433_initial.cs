@@ -15,7 +15,7 @@ namespace BugCatUsuario.Migrations
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    contrasenia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     apellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -35,23 +35,23 @@ namespace BugCatUsuario.Migrations
                     nroTarjeta = table.Column<long>(type: "bigint", nullable: false),
                     fechaCad = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ccv = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    usuarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tarjetas", x => x.TarjetaId);
                     table.ForeignKey(
-                        name: "FK_Tarjetas_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Tarjetas_Usuarios_usuarioId",
+                        column: x => x.usuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tarjetas_UsuarioId",
+                name: "IX_Tarjetas_usuarioId",
                 table: "Tarjetas",
-                column: "UsuarioId");
+                column: "usuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

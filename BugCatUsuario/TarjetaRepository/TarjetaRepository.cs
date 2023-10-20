@@ -23,7 +23,7 @@ namespace BugCatUsuario.TarjetaRepository
 
         public async Task<Tarjeta> BuscarTarjetasPorId(int id)
         {
-            var tarjeta = await bgcontext.Tarjetas.Where(c => c.TarjetaId == id).FirstOrDefaultAsync();
+            var tarjeta = await bgcontext.Tarjetas.Where(c => c.TarjetaId == id).Include(u => u.usuario).FirstOrDefaultAsync();
             return tarjeta;
         }
 
@@ -47,9 +47,9 @@ namespace BugCatUsuario.TarjetaRepository
             return true;
         }
 
-        public async Task<IEnumerable<Tarjeta>> BuscarTarjetas()
+        public async Task<IEnumerable<Tarjeta>> GetTarjetas()
         {
-            return await bgcontext.Tarjetas.ToListAsync();
+            return await bgcontext.Tarjetas.Include(u => u.usuario).ToListAsync();
         }
 
     }

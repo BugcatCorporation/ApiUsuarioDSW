@@ -23,7 +23,7 @@ namespace BugCatUsuario.UsuarioRepository
 
         public async Task<Usuario> BuscarUsuariosPorId(int id)
         {
-            var usuario = await bgcontext.Usuarios.Where(c => c.UsuarioId == id).FirstOrDefaultAsync();
+            var usuario = await bgcontext.Usuarios.Where(c => c.UsuarioId == id).Include(tarj => tarj.tarjeta).FirstOrDefaultAsync();
             return usuario;
         }
 
@@ -51,7 +51,7 @@ namespace BugCatUsuario.UsuarioRepository
 
         public async Task<IEnumerable<Usuario>> BuscarUsuarios()
         {
-            return await bgcontext.Usuarios.ToListAsync(); 
+            return await bgcontext.Usuarios.Include(tarj => tarj.tarjeta).ToListAsync(); 
         }
     }
 }

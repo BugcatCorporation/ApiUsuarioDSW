@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugCatUsuario.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231018232529_initial")]
+    [Migration("20231020173433_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace BugCatUsuario.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TarjetaId"), 1L, 1);
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ccv")
                         .HasColumnType("int");
 
@@ -43,9 +40,12 @@ namespace BugCatUsuario.Migrations
                     b.Property<long>("nroTarjeta")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("usuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("TarjetaId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("Tarjetas");
                 });
@@ -61,7 +61,7 @@ namespace BugCatUsuario.Migrations
                     b.Property<string>("apellido")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("contraseña")
+                    b.Property<string>("contrasenia")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("correo")
@@ -83,13 +83,13 @@ namespace BugCatUsuario.Migrations
 
             modelBuilder.Entity("BugCatUsuario.Models.Tarjeta", b =>
                 {
-                    b.HasOne("BugCatUsuario.Models.Usuario", "Usuario")
+                    b.HasOne("BugCatUsuario.Models.Usuario", "usuario")
                         .WithMany("tarjeta")
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("usuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("usuario");
                 });
 
             modelBuilder.Entity("BugCatUsuario.Models.Usuario", b =>

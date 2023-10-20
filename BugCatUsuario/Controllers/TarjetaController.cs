@@ -19,7 +19,7 @@ namespace BugCatUsuario.Controllers
         [Route("/buscarTarjeta")]
         public async Task<IEnumerable<Tarjeta>>BuscarTarjetas()
         {
-            return await usuRepository.BuscarTarjetas();
+            return await usuRepository.GetTarjetas();
         }
 
         [HttpGet]
